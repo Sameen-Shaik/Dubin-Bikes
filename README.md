@@ -14,6 +14,7 @@ A comprehensive machine learning project that predicts bike availability across 
 - [Visualizations](#visualizations)
 - [Key Findings](#key-findings)
 - [Technologies Used](#technologies-used)
+- [Reproducibility](#reproducibility)
 - [Future Improvements](#future-improvements)
 
 ## Project Overview
@@ -38,7 +39,7 @@ Predict `AVAILABLE_BIKES` - the number of bikes currently available for rental a
 
 | Attribute | Description |
 |-----------|-------------|
-| **Records** | 163,590 rows |
+| **Records** | 163,590  rows |
 | **Features** | 11 columns |
 | **Time Period** | June 2023 |
 | **Target Variable** | AVAILABLE_BIKES |
@@ -67,6 +68,8 @@ Dublin Bikes Data Analysis/
 │   ├── dataset.csv                    # Raw dataset
 │   ├── dataset_cleaned.csv            # Cleaned dataset
 │   └── dataset_preprocessed.csv       # Preprocessed dataset ready for modeling
+├── Scripts/
+│   └── download_csv.py  
 ├── Outputs/
 │   ├── Figures/
 │   │   ├── Availablity of Bikes.png
@@ -74,15 +77,13 @@ Dublin Bikes Data Analysis/
 │   │   ├── Mean & Median Availablity of Bikes.png
 │   │   └── Bikes Availability Heatmap.png
 │   └── Models/
-│       ├── XG-Boost Model.joblib
-│       └── MLP Model.joblib
+│       └── XG-Boost Model.joblib
 ├── Result Datasets/
 │
 ├── Notebook 1 -- Data cleaning.ipynb      # Data cleaning and preparation
 ├── Notebook 2 -- Data Visualization.ipynb # Exploratory data analysis
 ├── Notebook 3 -- Model Creation.ipynb     # Model training and evaluation
 ├── Notebook 4 -- Feature Selection.ipynb  # Feature importance and RFE
-├── Script -- Training pipeline.py         # Complete training pipeline script
 └── README.md                              # This file
 ```
 
@@ -90,7 +91,7 @@ Dublin Bikes Data Analysis/
 
 ### Prerequisites
 
-- Python 3.8+
+- Python 3.13+  (This version was used for while development)
 - Jupyter Notebook or JupyterLab
 
 ### Dependencies
@@ -212,6 +213,7 @@ XGBRegressor(
     n_jobs=-1
 )
 ```
+![Model Comparison](Outputs/Figures/models_comparison.png)
 
 ### 10-Fold Cross-Validation Results
 
@@ -269,13 +271,18 @@ Hour × Day of Week heatmap highlighting "hotspots" of high availability and "co
 | **Model Persistence** | Joblib |
 | **Development** | Jupyter Notebook |
 
+## Reproducibility
+
+- Fixed random seeds used for train/test splits and model training
+- Cross-validation performed using 10-fold CV
+- All preprocessing steps documented and reproducible
+
 ## Future Improvements
 
 - Integrate weather data for improved predictions
-- Add real-time streaming predictions
-- Deploy as a web service API
-- Include station-specific models for high-traffic locations
-- Implement time-series models (LSTM, Prophet) for sequential forecasting
+- Integrate real-time data ingestion from the Dublin Bikes API
+- Deploy model as a REST API for live predictions
+- Add modular training (`train_model.py`) and inference (`predict.py`) scripts for production-style workflows
 
 ## License
 
